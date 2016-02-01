@@ -1,8 +1,9 @@
+require 'ruby'
 require 'open-uri'
 require 'json'
 
 class ConnectionTest
-  $services_link = "[{'id':1,'platform':'Plataforma Suporte','url':'http://sysrad.com.br/online/'},{'id':2,'platform':'Painel Mobile','url':'http://sysrad.com.br/painelmobile/'},{'id':3,'platform':'YMWebDocuments','url':'http://sysrad.com.br/'},{'id':4,'platform':'Avaliação Suporte','url':'http://sysrad.com.br/'},{'id':5,'platform':'Midias teste','url':'http://192.168.1.40:90'}]"
+  $services_link = [{'id':1,'platform':'Plataforma Suporte','url':'http://sysrad.com.br/online/'},{'id':2,'platform':'Painel Mobile','url':'http://sysrad.com.br/painelmobile/'},{'id':3,'platform':'YMWebDocuments','url':'http://sysrad.com.br/'},{'id':4,'platform':'Avaliação Suporte','url':'http://sysrad.com.br/'},{'id':5,'platform':'Midias teste','url':'http://192.168.1.40:90'}]
 				   
   def initialize args
     begin
