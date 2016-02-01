@@ -1,4 +1,3 @@
-require 'ruby'
 require 'open-uri'
 require 'json'
 
