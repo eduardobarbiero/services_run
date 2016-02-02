@@ -1,5 +1,7 @@
 require 'open-uri'
 require 'json'
+require 'timeout'
+
 
 class ConnectionTest
   $services_link = [{'id':1,'platform':'Plataforma Suporte','url':'http://sysrad.com.br/online/'},{'id':2,'platform':'Painel Mobile','url':'http://sysrad.com.br/painelmobile/'},{'id':3,'platform':'YMWebDocuments','url':'http://sysrad.com.br/'},{'id':4,'platform':'Avaliação Suporte','url':'http://sysrad.com.br/'},{'id':5,'platform':'Midias teste','url':'http://192.168.1.40:90'}]
@@ -22,11 +24,10 @@ class ConnectionTest
 	      @platform = service
         test_connection service['url']
       end
-      sleep 15
     rescue => e
-      p 'Error: ' + e.to_s
-	    sleep 2
+      p 'Error: ' + e.to_s + ' platform: ' + @platform['platform']
     ensure
+      sleep 15
       internet_connection
 	  end
   end
@@ -35,8 +36,11 @@ class ConnectionTest
 
   def test_connection url
     begin
-      p 'Online: ' + @platform['platform'].to_s if open(url)
-    rescue
+      timeout(5) do
+        p 'Online: ' + @platform['platform'].to_s if open(url)
+      end
+    rescue Timeout::Error
+      logger.debug "Timed out."
       p 'Offline: ' + @platform['platform'].to_s
     end
   end
