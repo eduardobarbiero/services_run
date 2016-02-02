@@ -39,9 +39,8 @@ class ConnectionTest
       timeout(5) do
         p 'Online: ' + @platform['platform'].to_s if open(url)
       end
-    rescue Timeout::Error
-      logger.debug "Timed out."
-      p ' Offline: ' + @platform['platform'].to_s
+    rescue => e
+      p ' Offline: ' + @platform['platform'].to_s + ' error: ' + e.to_s
     end
   end
 
