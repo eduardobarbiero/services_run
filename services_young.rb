@@ -21,7 +21,8 @@ class ConnectionTest
       @services.each do |service|
 	      @platform = service
         test_connection service['url']
-	    end
+      end
+      sleep 15
     rescue => e
       p 'Error: ' + e.to_s
 	    sleep 2
@@ -35,10 +36,8 @@ class ConnectionTest
   def test_connection url
     begin
       p 'Online: ' + @platform['platform'].to_s if open(url)
-      sleep 2
     rescue
       p 'Offline: ' + @platform['platform'].to_s
-      sleep 2
     end
   end
 
