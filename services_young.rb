@@ -23,7 +23,6 @@ class ConnectionTest
       @services.each do |service|
 	    @platform = service
         test_connection service['url']
-		p service['platform']
       end
     rescue => e
       p 'Error: ' + e.to_s + ' Time: ' + Time.now.to_s + ' platform: ' + @platform['platform']
@@ -59,7 +58,6 @@ class ConnectionTest
     end
   end
 end
-
 
 ConnectionTest.monitore
 
