@@ -4,7 +4,7 @@ require 'timeout'
 
 
 class ConnectionTest
-  $services_link = [{'id':1,'platform':'Plataforma Suporte','url':'http://sysrad.com.br/online/'},{'id':2,'platform':'Painel Mobile','url':'http://sysrad.com.br/painelmobile/'},{'id':3,'platform':'YMWebDocuments','url':'http://sysrad.com.br/'},{'id':4,'platform':'Avaliação Suporte','url':'http://sysrad.com.br/'},{'id':5,'platform':'Midias teste','url':'http://192.168.1.40:90'},{'id':6,'platform':'Heroku','url':'https://servicesrun.herokuapp.com/'}]
+  $services_link = [{'id':1,'platform':'Plataforma Suporte','url':'http://sysrad.com.br/online/'},{'id':2,'platform':'Painel Mobile','url':'http://sysrad.com.br/painelmobile/'},{'id':3,'platform':'YMWebDocuments','url':'http://sysrad.com.br/'},{'id':4,'platform':'Avaliação Suporte','url':'http://sysrad.com.br/'},{'id':5,'platform':'Midias teste','url':'http://192.168.1.40:90'},{'id':6,'platform':'Heroku','url':'http://servicesrun.herokuapp.com/'},{'id':7,'platform':'Google','url':'http://google.com.br/'}]
 				   
   def initialize args
     begin
@@ -21,13 +21,14 @@ class ConnectionTest
   def internet_connection
     begin
       @services.each do |service|
-	      @platform = service
+	    @platform = service
         test_connection service['url']
+		p service['platform']
       end
     rescue => e
-      p 'Error: ' + e.to_s + ' platform: ' + @platform['platform']
+      p 'Error: ' + e.to_s + ' Time: ' + Time.now + ' platform: ' + @platform['platform']
     ensure
-      sleep 600
+      sleep 10
       internet_connection
 	  end
   end
@@ -40,7 +41,7 @@ class ConnectionTest
         p 'Online: ' + @platform['platform'].to_s if open(url)
       end
     rescue => e
-      p ' Offline: ' + @platform['platform'].to_s + ' error: ' + e.to_s
+      p ' Offline: ' + @platform['platform'].to_s + ' Time: ' + Time.now + ' error: ' + e.to_s
     end
   end
 
