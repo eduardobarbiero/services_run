@@ -27,7 +27,7 @@ class ConnectionTest
     rescue => e
       p 'Error: ' + e.to_s + ' platform: ' + @platform['platform']
     ensure
-      sleep 10.minutes
+      sleep 600
       internet_connection
 	  end
   end
