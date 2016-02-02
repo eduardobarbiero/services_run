@@ -27,7 +27,7 @@ class ConnectionTest
     rescue => e
       p 'Error: ' + e.to_s + ' platform: ' + @platform['platform']
     ensure
-      sleep 15
+      sleep 10.minute
       internet_connection
 	  end
   end
@@ -41,7 +41,7 @@ class ConnectionTest
       end
     rescue Timeout::Error
       logger.debug "Timed out."
-      p 'Offline: ' + @platform['platform'].to_s
+      p ' Offline: ' + @platform['platform'].to_s
     end
   end
 
